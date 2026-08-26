@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ka">
 <head>
@@ -58,10 +57,6 @@ body{
     transition:background 1s ease,color 1s ease;
 }
 
-body.no-scroll{
-    overflow:hidden;
-}
-
 button,
 input,
 textarea{
@@ -81,7 +76,6 @@ img{
     background:var(--gold);
     color:white;
 }
-
 
 /* =========================
    ATMOSPHERE
@@ -125,7 +119,6 @@ img{
     filter:blur(25px);
 }
 
-
 /* =========================
    SUN
 ========================= */
@@ -156,7 +149,6 @@ body.dark .sun{
     opacity:0;
     transform:translateY(150px) scale(.4);
 }
-
 
 /* =========================
    STARS
@@ -196,7 +188,6 @@ body.dark .stars{
         transform:scale(1.5);
     }
 }
-
 
 /* =========================
    MOON
@@ -242,7 +233,6 @@ body.dark .moon{
     left:30px;
     top:-12px;
 }
-
 
 /* =========================
    LOADER
@@ -326,7 +316,6 @@ body.dark .moon{
     }
 }
 
-
 /* =========================
    CURSOR
 ========================= */
@@ -357,7 +346,6 @@ body.dark .moon{
         display:none;
     }
 }
-
 
 /* =========================
    NAV
@@ -456,7 +444,6 @@ body.dark .moon{
     display:none;
 }
 
-
 /* =========================
    HERO
 ========================= */
@@ -491,8 +478,7 @@ body.dark .moon{
 
     transform:scale(1.08);
 
-    animation:
-        heroZoom 14s ease forwards;
+    animation:heroZoom 14s ease forwards;
 }
 
 @keyframes heroZoom{
@@ -537,8 +523,7 @@ body.dark .hero::after{
     opacity:.8;
     pointer-events:none;
 
-    animation:
-        raysMove 12s ease-in-out infinite alternate;
+    animation:raysMove 12s ease-in-out infinite alternate;
 }
 
 @keyframes raysMove{
@@ -583,50 +568,16 @@ body.dark .night-lights{
         0 0 10px #ffd88a,
         0 0 25px rgba(255,190,80,.8);
 
-    animation:
-        lightPulse 2s ease-in-out infinite alternate;
+    animation:lightPulse 2s ease-in-out infinite alternate;
 }
 
-.light:nth-child(1){
-    left:12%;
-    top:25%;
-}
-
-.light:nth-child(2){
-    left:22%;
-    top:18%;
-    animation-delay:.5s;
-}
-
-.light:nth-child(3){
-    left:36%;
-    top:27%;
-    animation-delay:1s;
-}
-
-.light:nth-child(4){
-    left:55%;
-    top:17%;
-    animation-delay:.2s;
-}
-
-.light:nth-child(5){
-    left:72%;
-    top:25%;
-    animation-delay:.8s;
-}
-
-.light:nth-child(6){
-    left:85%;
-    top:17%;
-    animation-delay:1.3s;
-}
-
-.light:nth-child(7){
-    left:93%;
-    top:32%;
-    animation-delay:.4s;
-}
+.light:nth-child(1){left:12%;top:25%;}
+.light:nth-child(2){left:22%;top:18%;animation-delay:.5s;}
+.light:nth-child(3){left:36%;top:27%;animation-delay:1s;}
+.light:nth-child(4){left:55%;top:17%;animation-delay:.2s;}
+.light:nth-child(5){left:72%;top:25%;animation-delay:.8s;}
+.light:nth-child(6){left:85%;top:17%;animation-delay:1.3s;}
+.light:nth-child(7){left:93%;top:32%;animation-delay:.4s;}
 
 @keyframes lightPulse{
     from{
@@ -713,13 +664,9 @@ body.dark .night-lights{
     width:1px;
     height:65px;
 
-    background:linear-gradient(
-        white,
-        transparent
-    );
+    background:linear-gradient(white,transparent);
 
-    animation:
-        scrollLine 2s infinite;
+    animation:scrollLine 2s infinite;
 }
 
 @keyframes scrollLine{
@@ -728,7 +675,6 @@ body.dark .night-lights{
         opacity:.35;
     }
 }
-
 
 /* =========================
    GENERAL
@@ -776,7 +722,6 @@ body.dark .night-lights{
     line-height:2.1;
 }
 
-
 /* =========================
    INTRO
 ========================= */
@@ -807,8 +752,7 @@ body.dark .night-lights{
 
     opacity:.45;
 
-    animation:
-        monogramFloat 5s ease-in-out infinite;
+    animation:monogramFloat 5s ease-in-out infinite;
 }
 
 @keyframes monogramFloat{
@@ -816,7 +760,6 @@ body.dark .night-lights{
         transform:translateY(-12px);
     }
 }
-
 
 /* =========================
    STORY
@@ -842,8 +785,7 @@ body.dark .night-lights{
 
     object-fit:cover;
 
-    transition:
-        transform 1.5s cubic-bezier(.22,1,.36,1);
+    transition:transform 1.5s cubic-bezier(.22,1,.36,1);
 }
 
 .story-image:hover img{
@@ -857,12 +799,7 @@ body.dark .night-lights{
 
 .timeline-item{
     position:relative;
-
-    padding:
-        0
-        0
-        75px
-        45px;
+    padding:0 0 75px 45px;
 }
 
 .timeline-item:last-child{
@@ -915,7 +852,6 @@ body.dark .night-lights{
     font-size:12px;
     line-height:1.9;
 }
-
 
 /* =========================
    DETAILS
@@ -1028,7 +964,6 @@ body.dark .night-lights{
     letter-spacing:2px;
 }
 
-
 /* =========================
    COUNTDOWN
 ========================= */
@@ -1112,7 +1047,6 @@ body.dark .night-lights{
     opacity:.65;
 }
 
-
 /* =========================
    RSVP
 ========================= */
@@ -1123,7 +1057,6 @@ body.dark .night-lights{
 
 .rsvp-layout{
     display:grid;
-
     grid-template-columns:.8fr 1.2fr;
 
     gap:100px;
@@ -1171,9 +1104,7 @@ body.dark .night-lights{
 
 .attendance{
     display:flex;
-
     gap:12px;
-
     flex-wrap:wrap;
 }
 
@@ -1286,14 +1217,12 @@ body.dark .night-lights{
     line-height:2;
 }
 
-
 /* =========================
    FOOTER
 ========================= */
 
 .footer{
     padding:140px 0 40px;
-
     text-align:center;
 }
 
@@ -1334,7 +1263,6 @@ body.dark .night-lights{
 
     letter-spacing:4px;
 }
-
 
 /* =========================
    MUSIC
@@ -1377,9 +1305,7 @@ body.dark .night-lights{
 
 .music-btn.playing .music-ring{
     opacity:1;
-
-    animation:
-        spin 3s linear infinite;
+    animation:spin 3s linear infinite;
 }
 
 @keyframes spin{
@@ -1387,7 +1313,6 @@ body.dark .night-lights{
         transform:rotate(360deg);
     }
 }
-
 
 /* =========================
    REVEAL
@@ -1407,7 +1332,6 @@ body.dark .night-lights{
     opacity:1;
     transform:none;
 }
-
 
 /* =========================
    PETALS
@@ -1429,15 +1353,12 @@ body.dark .night-lights{
 
     z-index:2;
 
-    animation:
-        fall linear forwards;
+    animation:fall linear forwards;
 }
 
 @keyframes fall{
     0%{
-        transform:
-            translateY(-30px)
-            rotate(0deg);
+        transform:translateY(-30px) rotate(0deg);
     }
 
     100%{
@@ -1447,7 +1368,6 @@ body.dark .night-lights{
             rotate(500deg);
     }
 }
-
 
 /* =========================
    MOBILE
@@ -1548,7 +1468,6 @@ body.dark .night-lights{
 
     .story-grid{
         grid-template-columns:1fr;
-
         gap:70px;
     }
 
@@ -1558,7 +1477,6 @@ body.dark .night-lights{
 
     .details-head{
         flex-direction:column;
-
         align-items:flex-start;
     }
 
@@ -1568,7 +1486,6 @@ body.dark .night-lights{
 
     .detail-card{
         border-right:0;
-
         border-bottom:1px solid var(--line);
     }
 
@@ -1578,7 +1495,6 @@ body.dark .night-lights{
 
     .timer{
         grid-template-columns:1fr 1fr;
-
         gap:50px 0;
     }
 
@@ -1588,21 +1504,18 @@ body.dark .night-lights{
 
     .rsvp-layout{
         grid-template-columns:1fr;
-
         gap:60px;
     }
 
     .footer-title{
         font-size:78px;
     }
-
 }
 
 @media(max-width:430px){
 
     .loader-monogram{
         font-size:72px;
-
         letter-spacing:10px;
     }
 
@@ -1626,7 +1539,6 @@ body.dark .night-lights{
 </style>
 </head>
 
-
 <body>
 
 <div class="ambient"></div>
@@ -1634,7 +1546,6 @@ body.dark .night-lights{
 <div class="moon"></div>
 
 <div class="stars" id="stars"></div>
-
 
 <!-- LOADER -->
 
@@ -1652,9 +1563,7 @@ body.dark .night-lights{
 
 </div>
 
-
 <div class="cursor"></div>
-
 
 <!-- NAV -->
 
@@ -1686,6 +1595,7 @@ body.dark .night-lights{
             class="theme-btn"
             id="themeBtn"
             aria-label="თემის შეცვლა"
+            type="button"
         >
             ☾
         </button>
@@ -1694,6 +1604,7 @@ body.dark .night-lights{
             class="menu-btn"
             id="menuBtn"
             aria-label="მენიუ"
+            type="button"
         >
             ☰
         </button>
@@ -1701,7 +1612,6 @@ body.dark .night-lights{
     </div>
 
 </nav>
-
 
 <!-- HERO -->
 
@@ -1731,17 +1641,11 @@ body.dark .night-lights{
 
         <h1 class="hero-title">
 
-            <span>
-                ლუკა
-            </span>
+            <span>ლუკა</span>
 
-            <span class="amp">
-                &
-            </span>
+            <span class="amp">&</span>
 
-            <span>
-                ქეთი
-            </span>
+            <span>ქეთი</span>
 
         </h1>
 
@@ -1753,9 +1657,7 @@ body.dark .night-lights{
 
     <div class="scroll-indicator">
 
-        <span>
-            გააგრძელე
-        </span>
+        <span>გააგრძელე</span>
 
         <div class="scroll-line"></div>
 
@@ -1763,9 +1665,7 @@ body.dark .night-lights{
 
 </header>
 
-
 <main>
-
 
 <!-- INTRO -->
 
@@ -1781,7 +1681,6 @@ body.dark .night-lights{
 
             ორი ადამიანი.
             <br>
-
             ერთი ისტორია.
 
         </h2>
@@ -1802,7 +1701,6 @@ body.dark .night-lights{
 
 </section>
 
-
 <!-- STORY -->
 
 <section class="section" id="story">
@@ -1810,7 +1708,6 @@ body.dark .night-lights{
     <div class="container">
 
         <div class="story-grid">
-
 
             <div class="story-image reveal">
 
@@ -1820,7 +1717,6 @@ body.dark .night-lights{
                 >
 
             </div>
-
 
             <div>
 
@@ -1832,17 +1728,13 @@ body.dark .night-lights{
 
                     ერთად
                     <br>
-
                     დაწყებული
                     <br>
-
                     გზა.
 
                 </h2>
 
-
                 <div class="timeline">
-
 
                     <div class="timeline-item reveal">
 
@@ -1855,14 +1747,11 @@ body.dark .night-lights{
                         </div>
 
                         <div class="timeline-text">
-
                             აქ შეგიძლიათ დაამატოთ
                             თქვენი პირველი შეხვედრის ისტორია.
-
                         </div>
 
                     </div>
-
 
                     <div class="timeline-item reveal">
 
@@ -1875,14 +1764,11 @@ body.dark .night-lights{
                         </div>
 
                         <div class="timeline-text">
-
                             კიდევ ერთი განსაკუთრებული
                             მომენტი თქვენს ისტორიაში.
-
                         </div>
 
                     </div>
-
 
                     <div class="timeline-item reveal">
 
@@ -1895,14 +1781,11 @@ body.dark .night-lights{
                         </div>
 
                         <div class="timeline-text">
-
                             ის დღე, რომელიც სამუდამოდ
                             დარჩება თქვენს მოგონებებში.
-
                         </div>
 
                     </div>
-
 
                     <div class="timeline-item reveal">
 
@@ -1915,14 +1798,11 @@ body.dark .night-lights{
                         </div>
 
                         <div class="timeline-text">
-
                             დღე, რომელსაც ერთად
                             სამუდამოდ დავიმახსოვრებთ.
-
                         </div>
 
                     </div>
-
 
                 </div>
 
@@ -1934,16 +1814,11 @@ body.dark .night-lights{
 
 </section>
 
-
 <!-- DETAILS -->
 
-<section
-    class="section details"
-    id="details"
->
+<section class="section details" id="details">
 
     <div class="container">
-
 
         <div class="details-head">
 
@@ -1959,7 +1834,6 @@ body.dark .night-lights{
 
             </div>
 
-
             <div class="date-display reveal">
 
                 18
@@ -1972,9 +1846,7 @@ body.dark .night-lights{
 
         </div>
 
-
         <div class="detail-cards">
-
 
             <div class="detail-card reveal">
 
@@ -1982,9 +1854,7 @@ body.dark .night-lights{
                     01
                 </div>
 
-                <h3>
-                    თარიღი
-                </h3>
+                <h3>თარიღი</h3>
 
                 <p>
                     18 სექტემბერი 2027
@@ -1992,16 +1862,13 @@ body.dark .night-lights{
 
             </div>
 
-
             <div class="detail-card reveal">
 
                 <div class="detail-number">
                     02
                 </div>
 
-                <h3>
-                    დრო
-                </h3>
+                <h3>დრო</h3>
 
                 <p>
                     17:00
@@ -2009,16 +1876,13 @@ body.dark .night-lights{
 
             </div>
 
-
             <div class="detail-card reveal">
 
                 <div class="detail-number">
                     03
                 </div>
 
-                <h3>
-                    ადგილი
-                </h3>
+                <h3>ადგილი</h3>
 
                 <p>
 
@@ -2039,13 +1903,11 @@ body.dark .night-lights{
 
             </div>
 
-
         </div>
 
     </div>
 
 </section>
-
 
 <!-- COUNTDOWN -->
 
@@ -2061,13 +1923,9 @@ body.dark .night-lights{
 
         <div class="timer">
 
-
             <div class="timer-item">
 
-                <div
-                    class="timer-number"
-                    id="days"
-                >
+                <div class="timer-number" id="days">
                     00
                 </div>
 
@@ -2077,13 +1935,9 @@ body.dark .night-lights{
 
             </div>
 
-
             <div class="timer-item">
 
-                <div
-                    class="timer-number"
-                    id="hours"
-                >
+                <div class="timer-number" id="hours">
                     00
                 </div>
 
@@ -2093,13 +1947,9 @@ body.dark .night-lights{
 
             </div>
 
-
             <div class="timer-item">
 
-                <div
-                    class="timer-number"
-                    id="minutes"
-                >
+                <div class="timer-number" id="minutes">
                     00
                 </div>
 
@@ -2109,13 +1959,9 @@ body.dark .night-lights{
 
             </div>
 
-
             <div class="timer-item">
 
-                <div
-                    class="timer-number"
-                    id="seconds"
-                >
+                <div class="timer-number" id="seconds">
                     00
                 </div>
 
@@ -2125,25 +1971,19 @@ body.dark .night-lights{
 
             </div>
 
-
         </div>
 
     </div>
 
 </section>
 
-
 <!-- RSVP -->
 
-<section
-    class="section rsvp"
-    id="rsvp"
->
+<section class="section rsvp" id="rsvp">
 
     <div class="container">
 
         <div class="rsvp-layout">
-
 
             <div>
 
@@ -2170,15 +2010,12 @@ body.dark .night-lights{
 
             </div>
 
-
             <div>
-
 
                 <form
                     class="rsvp-form"
                     id="rsvpForm"
                 >
-
 
                     <div class="field">
 
@@ -2195,16 +2032,13 @@ body.dark .night-lights{
 
                     </div>
 
-
                     <div class="field">
 
                         <label>
                             დასწრება
                         </label>
 
-
                         <div class="attendance">
-
 
                             <label>
 
@@ -2219,7 +2053,6 @@ body.dark .night-lights{
 
                             </label>
 
-
                             <label>
 
                                 <input
@@ -2232,18 +2065,15 @@ body.dark .night-lights{
 
                             </label>
 
-
                         </div>
 
                     </div>
-
 
                     <div class="field">
 
                         <label>
                             სტუმრების რაოდენობა
                         </label>
-
 
                         <div class="guest-counter">
 
@@ -2255,14 +2085,12 @@ body.dark .night-lights{
                                 −
                             </button>
 
-
                             <div
                                 class="guest-count"
                                 id="guestCount"
                             >
                                 1
                             </div>
-
 
                             <button
                                 type="button"
@@ -2275,7 +2103,6 @@ body.dark .night-lights{
                         </div>
 
                     </div>
-
 
                     <div class="field">
 
@@ -2291,7 +2118,6 @@ body.dark .night-lights{
 
                     </div>
 
-
                     <button
                         class="submit-btn"
                         type="submit"
@@ -2299,9 +2125,7 @@ body.dark .night-lights{
                         დასწრების დადასტურება
                     </button>
 
-
                 </form>
-
 
                 <div
                     class="success"
@@ -2322,7 +2146,6 @@ body.dark .night-lights{
 
                 </div>
 
-
             </div>
 
         </div>
@@ -2331,9 +2154,7 @@ body.dark .night-lights{
 
 </section>
 
-
 </main>
-
 
 <!-- FOOTER -->
 
@@ -2365,13 +2186,13 @@ body.dark .night-lights{
 
 </footer>
 
-
 <!-- MUSIC -->
 
 <button
     class="music-btn"
     id="musicBtn"
     aria-label="მუსიკის ჩართვა"
+    type="button"
 >
 
     <span class="music-ring"></span>
@@ -2380,30 +2201,32 @@ body.dark .night-lights{
 
 </button>
 
-
 <audio
     id="music"
     loop
-    src="https://cdn.pixabay.com/audio/2022/10/25/audio_946f7e9f7c.mp3"
-></audio>
-
+    preload="auto"
+>
+    <source
+        src="https://cdn.pixabay.com/audio/2022/10/25/audio_946f7e9f7c.mp3"
+        type="audio/mpeg"
+    >
+</audio>
 
 <script>
-
 
 /* =========================
    LOADER
 ========================= */
 
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         document
             .getElementById("loader")
             .classList.add("hide");
 
-    },2300);
+    }, 2300);
 
 });
 
@@ -2412,29 +2235,26 @@ window.addEventListener("load",()=>{
    STARS
 ========================= */
 
-const stars =
-    document.getElementById("stars");
+const stars = document.getElementById("stars");
 
-for(let i=0;i<130;i++){
+for(let i = 0; i < 130; i++){
 
-    const star =
-        document.createElement("div");
+    const star = document.createElement("div");
 
-    star.className="star";
+    star.className = "star";
 
-    star.style.left =
-        Math.random()*100+"%";
+    star.style.left = Math.random() * 100 + "%";
 
-    star.style.top =
-        Math.random()*100+"%";
+    star.style.top = Math.random() * 100 + "%";
 
     star.style.animationDelay =
-        Math.random()*3+"s";
+        Math.random() * 3 + "s";
 
     star.style.animationDuration =
-        (1.5+Math.random()*3)+"s";
+        (1.5 + Math.random() * 3) + "s";
 
     stars.appendChild(star);
+
 }
 
 
@@ -2447,33 +2267,37 @@ const cursor =
 
 document.addEventListener(
     "mousemove",
-    e=>{
+    e => {
 
         cursor.style.left =
-            e.clientX+"px";
+            e.clientX + "px";
 
         cursor.style.top =
-            e.clientY+"px";
+            e.clientY + "px";
 
     }
 );
 
 
 document
-    .querySelectorAll("a,button")
-    .forEach(el=>{
+    .querySelectorAll("a, button")
+    .forEach(el => {
 
         el.addEventListener(
             "mouseenter",
-            ()=>{
+            () => {
+
                 cursor.classList.add("active");
+
             }
         );
 
         el.addEventListener(
             "mouseleave",
-            ()=>{
+            () => {
+
                 cursor.classList.remove("active");
+
             }
         );
 
@@ -2487,14 +2311,13 @@ document
 const nav =
     document.getElementById("nav");
 
-
 window.addEventListener(
     "scroll",
-    ()=>{
+    () => {
 
         nav.classList.toggle(
             "scrolled",
-            window.scrollY>50
+            window.scrollY > 50
         );
 
     }
@@ -2510,7 +2333,7 @@ const navLinks =
 
 menuBtn.addEventListener(
     "click",
-    ()=>{
+    () => {
 
         navLinks.classList.toggle("open");
 
@@ -2520,11 +2343,11 @@ menuBtn.addEventListener(
 
 document
     .querySelectorAll(".nav-links a")
-    .forEach(link=>{
+    .forEach(link => {
 
         link.addEventListener(
             "click",
-            ()=>{
+            () => {
 
                 navLinks.classList.remove("open");
 
@@ -2555,8 +2378,7 @@ function updateThemeIcon(){
 
 if(
     localStorage.getItem("wedding-theme")
-    ===
-    "dark"
+    === "dark"
 ){
 
     document.body.classList.add("dark");
@@ -2569,7 +2391,7 @@ updateThemeIcon();
 
 themeBtn.addEventListener(
     "click",
-    ()=>{
+    () => {
 
         document.body.classList.toggle("dark");
 
@@ -2599,21 +2421,21 @@ const weddingDate =
 function updateCountdown(){
 
     const distance =
-        weddingDate-Date.now();
+        weddingDate - Date.now();
 
 
-    if(distance<=0){
+    if(distance <= 0){
 
         [
             "days",
             "hours",
             "minutes",
             "seconds"
-        ].forEach(id=>{
+        ].forEach(id => {
 
             document
                 .getElementById(id)
-                .textContent="00";
+                .textContent = "00";
 
         });
 
@@ -2625,62 +2447,58 @@ function updateCountdown(){
     const days =
         Math.floor(
             distance /
-            (1000*60*60*24)
+            (1000 * 60 * 60 * 24)
         );
 
 
     const hours =
         Math.floor(
-            distance /
-            (1000*60*60) %
-            24
+            (distance / (1000 * 60 * 60))
+            % 24
         );
 
 
     const minutes =
         Math.floor(
-            distance /
-            (1000*60) %
-            60
+            (distance / (1000 * 60))
+            % 60
         );
 
 
     const seconds =
         Math.floor(
-            distance /
-            1000 %
-            60
+            (distance / 1000)
+            % 60
         );
 
 
     document
         .getElementById("days")
         .textContent =
-        String(days).padStart(2,"0");
+        String(days).padStart(2, "0");
 
 
     document
         .getElementById("hours")
         .textContent =
-        String(hours).padStart(2,"0");
+        String(hours).padStart(2, "0");
 
 
     document
         .getElementById("minutes")
         .textContent =
-        String(minutes).padStart(2,"0");
+        String(minutes).padStart(2, "0");
 
 
     document
         .getElementById("seconds")
         .textContent =
-        String(seconds).padStart(2,"0");
+        String(seconds).padStart(2, "0");
 
 }
 
 
 updateCountdown();
-
 
 setInterval(
     updateCountdown,
@@ -2694,9 +2512,9 @@ setInterval(
 
 const revealObserver =
     new IntersectionObserver(
-        entries=>{
+        entries => {
 
-            entries.forEach(entry=>{
+            entries.forEach(entry => {
 
                 if(entry.isIntersecting){
 
@@ -2717,7 +2535,7 @@ const revealObserver =
 
 document
     .querySelectorAll(".reveal")
-    .forEach(el=>{
+    .forEach(el => {
 
         revealObserver.observe(el);
 
@@ -2728,7 +2546,7 @@ document
    RSVP
 ========================= */
 
-let guestCount=1;
+let guestCount = 1;
 
 
 const guestDisplay =
@@ -2739,9 +2557,9 @@ document
     .getElementById("plus")
     .addEventListener(
         "click",
-        ()=>{
+        () => {
 
-            if(guestCount<10){
+            if(guestCount < 10){
 
                 guestCount++;
 
@@ -2758,9 +2576,9 @@ document
     .getElementById("minus")
     .addEventListener(
         "click",
-        ()=>{
+        () => {
 
-            if(guestCount>1){
+            if(guestCount > 1){
 
                 guestCount--;
 
@@ -2783,7 +2601,7 @@ const success =
 
 rsvpForm.addEventListener(
     "submit",
-    e=>{
+    e => {
 
         e.preventDefault();
 
@@ -2836,13 +2654,9 @@ rsvpForm.addEventListener(
         );
 
 
-        rsvpForm.style.display =
-            "none";
+        rsvpForm.style.display = "none";
 
-
-        success.classList.add(
-            "show"
-        );
+        success.classList.add("show");
 
     }
 );
@@ -2860,41 +2674,52 @@ const musicBtn =
     document.getElementById("musicBtn");
 
 
-let playing=false;
+music.volume = 0.5;
 
 
 musicBtn.addEventListener(
     "click",
-    async()=>{
+    async () => {
 
         try{
 
-            if(!playing){
+            if(music.paused){
 
                 await music.play();
 
-                playing=true;
-
                 musicBtn.classList.add(
                     "playing"
+                );
+
+                musicBtn.setAttribute(
+                    "aria-label",
+                    "მუსიკის გამორთვა"
                 );
 
             }else{
 
                 music.pause();
 
-                playing=false;
-
                 musicBtn.classList.remove(
                     "playing"
+                );
+
+                musicBtn.setAttribute(
+                    "aria-label",
+                    "მუსიკის ჩართვა"
                 );
 
             }
 
         }catch(error){
 
-            console.log(
-                "Music could not be played."
+            console.error(
+                "Music could not be played:",
+                error
+            );
+
+            alert(
+                "მუსიკის ჩართვა ვერ მოხერხდა. შეამოწმე ინტერნეტ კავშირი ან MP3 ბმული."
             );
 
         }
@@ -2912,16 +2737,17 @@ function createPetal(){
     const petal =
         document.createElement("div");
 
-    petal.className="petal";
+    petal.className = "petal";
 
     petal.style.left =
-        Math.random()*100+"vw";
+        Math.random() * 100 + "vw";
 
     petal.style.opacity =
-        .25+Math.random()*.45;
+        0.25 + Math.random() * 0.45;
 
     petal.style.animationDuration =
-        7+Math.random()*8+"s";
+        7 + Math.random() * 8 + "s";
+
 
     document.body.appendChild(
         petal
@@ -2929,8 +2755,10 @@ function createPetal(){
 
 
     setTimeout(
-        ()=>{
+        () => {
+
             petal.remove();
+
         },
         16000
     );
@@ -2954,7 +2782,7 @@ const heroBg =
 
 window.addEventListener(
     "scroll",
-    ()=>{
+    () => {
 
         if(
             window.scrollY <
@@ -2962,8 +2790,7 @@ window.addEventListener(
         ){
 
             heroBg.style.transform =
-                `scale(1.04)
-                 translateY(${window.scrollY*.08}px)`;
+                `scale(1.04) translateY(${window.scrollY * 0.08}px)`;
 
         }
 
@@ -2974,4 +2801,3 @@ window.addEventListener(
 
 </body>
 </html>
-```
