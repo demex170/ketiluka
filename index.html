@@ -1,0 +1,2977 @@
+
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>ლუკა & ქეთი — ჩვენი დღე</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Serif+Georgian:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#f7f4ee;
+    --surface:#eee8dd;
+    --surface-2:#e6dfd2;
+    --text:#211e1a;
+    --muted:#777067;
+    --gold:#aa8750;
+    --gold-light:#d6b77d;
+    --line:rgba(35,30,24,.13);
+    --white:#fffdf8;
+    --shadow:0 30px 80px rgba(45,35,25,.13);
+}
+
+body.dark{
+    --bg:#08090d;
+    --surface:#111217;
+    --surface-2:#17181e;
+    --text:#f5eee4;
+    --muted:#aaa49c;
+    --gold:#d0a967;
+    --gold-light:#f0cd8b;
+    --line:rgba(255,255,255,.11);
+    --white:#fffaf0;
+    --shadow:0 30px 100px rgba(0,0,0,.5);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Manrope",sans-serif;
+    overflow-x:hidden;
+    transition:background 1s ease,color 1s ease;
+}
+
+body.no-scroll{
+    overflow:hidden;
+}
+
+button,
+input,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+::selection{
+    background:var(--gold);
+    color:white;
+}
+
+
+/* =========================
+   ATMOSPHERE
+========================= */
+
+.ambient{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+    overflow:hidden;
+}
+
+.ambient::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    left:-250px;
+    top:-300px;
+    background:radial-gradient(
+        circle,
+        rgba(255,215,140,.25),
+        transparent 65%
+    );
+    filter:blur(20px);
+}
+
+.ambient::after{
+    content:"";
+    position:absolute;
+    width:800px;
+    height:800px;
+    right:-350px;
+    bottom:-400px;
+    background:radial-gradient(
+        circle,
+        rgba(177,205,255,.23),
+        transparent 65%
+    );
+    filter:blur(25px);
+}
+
+
+/* =========================
+   SUN
+========================= */
+
+.sun{
+    position:fixed;
+    width:240px;
+    height:240px;
+    right:-70px;
+    top:110px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:-1;
+
+    background:radial-gradient(
+        circle,
+        #fffbd8 0%,
+        #ffeaa0 35%,
+        rgba(255,225,130,.25) 60%,
+        transparent 72%
+    );
+
+    opacity:.7;
+    transition:1s;
+}
+
+body.dark .sun{
+    opacity:0;
+    transform:translateY(150px) scale(.4);
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.stars{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:0;
+    transition:1.5s;
+}
+
+body.dark .stars{
+    opacity:1;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 8px white;
+    animation:twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.15;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+
+/* =========================
+   MOON
+========================= */
+
+.moon{
+    position:fixed;
+    width:100px;
+    height:100px;
+    right:80px;
+    top:110px;
+    border-radius:50%;
+
+    background:#f6f1d8;
+
+    box-shadow:
+        0 0 40px rgba(255,245,200,.35),
+        0 0 100px rgba(255,235,160,.18);
+
+    opacity:0;
+    transform:translateY(-40px) scale(.7);
+
+    pointer-events:none;
+    z-index:-1;
+
+    transition:
+        opacity 1.3s ease,
+        transform 1.3s ease;
+}
+
+body.dark .moon{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+.moon::after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:var(--bg);
+    left:30px;
+    top:-12px;
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    background:#0b0b0c;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-monogram{
+    font-family:"Cormorant Garamond",serif;
+    font-size:90px;
+    font-weight:300;
+    letter-spacing:14px;
+    opacity:0;
+
+    animation:
+        loaderIn 1.4s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.loader-line{
+    width:0;
+    height:1px;
+    margin-top:25px;
+    background:var(--gold-light);
+
+    animation:
+        loaderLine 1.6s ease .4s forwards;
+}
+
+.loader-text{
+    margin-top:20px;
+    font-size:8px;
+    letter-spacing:5px;
+    opacity:0;
+
+    animation:
+        loaderText 1s ease .9s forwards;
+}
+
+@keyframes loaderIn{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes loaderLine{
+    to{
+        width:150px;
+    }
+}
+
+@keyframes loaderText{
+    to{
+        opacity:.6;
+    }
+}
+
+
+/* =========================
+   CURSOR
+========================= */
+
+.cursor{
+    position:fixed;
+    width:10px;
+    height:10px;
+
+    border:1px solid var(--gold-light);
+    border-radius:50%;
+
+    pointer-events:none;
+    z-index:99999;
+
+    transform:translate(-50%,-50%);
+    transition:.25s;
+}
+
+.cursor.active{
+    width:35px;
+    height:35px;
+    background:rgba(210,170,100,.1);
+}
+
+@media(max-width:800px){
+    .cursor{
+        display:none;
+    }
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+    position:fixed;
+    z-index:1000;
+
+    top:22px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(1150px,calc(100% - 40px));
+    height:68px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:100px;
+
+    background:rgba(10,10,10,.18);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    color:white;
+    transition:.5s;
+}
+
+.nav.scrolled{
+    background:rgba(20,18,15,.85);
+    box-shadow:0 15px 50px rgba(0,0,0,.18);
+}
+
+.logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:27px;
+    letter-spacing:4px;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+
+    font-size:9px;
+    letter-spacing:1.7px;
+
+    opacity:.8;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    opacity:1;
+    color:var(--gold-light);
+}
+
+.nav-actions{
+    display:flex;
+    gap:8px;
+}
+
+.theme-btn,
+.menu-btn{
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);
+
+    background:rgba(255,255,255,.07);
+    color:white;
+
+    display:grid;
+    place-items:center;
+
+    transition:.35s;
+}
+
+.theme-btn:hover,
+.menu-btn:hover{
+    transform:rotate(10deg) scale(1.05);
+}
+
+.menu-btn{
+    display:none;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    height:100svh;
+    min-height:700px;
+
+    position:relative;
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+}
+
+.hero-bg{
+    position:absolute;
+    inset:-5%;
+
+    background-image:
+        linear-gradient(
+            rgba(20,25,30,.08),
+            rgba(20,25,30,.35)
+        ),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2400&q=90");
+
+    background-position:center;
+    background-size:cover;
+
+    transform:scale(1.08);
+
+    animation:
+        heroZoom 14s ease forwards;
+}
+
+@keyframes heroZoom{
+    from{
+        transform:scale(1.12);
+    }
+
+    to{
+        transform:scale(1);
+    }
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        rgba(2,5,15,0),
+        rgba(2,4,13,.15)
+    );
+
+    opacity:0;
+    transition:1.5s;
+}
+
+body.dark .hero::after{
+    opacity:1;
+}
+
+.hero-light-rays{
+    position:absolute;
+    inset:-20%;
+
+    background:conic-gradient(
+        from 210deg at 80% 15%,
+        transparent 0deg,
+        rgba(255,239,187,.18) 12deg,
+        transparent 35deg
+    );
+
+    opacity:.8;
+    pointer-events:none;
+
+    animation:
+        raysMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes raysMove{
+    from{
+        transform:rotate(-2deg);
+    }
+
+    to{
+        transform:rotate(3deg);
+    }
+}
+
+body.dark .hero-light-rays{
+    opacity:0;
+}
+
+.night-lights{
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+    opacity:0;
+
+    transition:1s;
+}
+
+body.dark .night-lights{
+    opacity:1;
+}
+
+.light{
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#ffd88a;
+
+    box-shadow:
+        0 0 10px #ffd88a,
+        0 0 25px rgba(255,190,80,.8);
+
+    animation:
+        lightPulse 2s ease-in-out infinite alternate;
+}
+
+.light:nth-child(1){
+    left:12%;
+    top:25%;
+}
+
+.light:nth-child(2){
+    left:22%;
+    top:18%;
+    animation-delay:.5s;
+}
+
+.light:nth-child(3){
+    left:36%;
+    top:27%;
+    animation-delay:1s;
+}
+
+.light:nth-child(4){
+    left:55%;
+    top:17%;
+    animation-delay:.2s;
+}
+
+.light:nth-child(5){
+    left:72%;
+    top:25%;
+    animation-delay:.8s;
+}
+
+.light:nth-child(6){
+    left:85%;
+    top:17%;
+    animation-delay:1.3s;
+}
+
+.light:nth-child(7){
+    left:93%;
+    top:32%;
+    animation-delay:.4s;
+}
+
+@keyframes lightPulse{
+    from{
+        opacity:.3;
+        transform:scale(.8);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.7);
+    }
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+
+    text-align:center;
+    padding:20px;
+}
+
+.eyebrow{
+    margin-bottom:35px;
+
+    font-size:9px;
+    letter-spacing:7px;
+    text-transform:uppercase;
+
+    opacity:.8;
+}
+
+.hero-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(90px,14vw,190px);
+
+    font-weight:300;
+    line-height:.63;
+    letter-spacing:-5px;
+
+    text-shadow:0 10px 40px rgba(0,0,0,.12);
+}
+
+.hero-title span{
+    display:block;
+}
+
+.hero-title .amp{
+    font-size:.38em;
+    line-height:1.8;
+    font-style:italic;
+}
+
+.hero-date{
+    margin-top:50px;
+
+    font-family:"Noto Serif Georgian",serif;
+
+    font-size:11px;
+    letter-spacing:4px;
+}
+
+.scroll-indicator{
+    position:absolute;
+    z-index:5;
+
+    left:50%;
+    bottom:30px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:12px;
+
+    font-size:8px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.scroll-line{
+    width:1px;
+    height:65px;
+
+    background:linear-gradient(
+        white,
+        transparent
+    );
+
+    animation:
+        scrollLine 2s infinite;
+}
+
+@keyframes scrollLine{
+    50%{
+        transform:translateY(12px);
+        opacity:.35;
+    }
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+.container{
+    width:min(1180px,calc(100% - 50px));
+    margin:auto;
+}
+
+.section{
+    padding:150px 0;
+}
+
+.section-label{
+    margin-bottom:22px;
+
+    color:var(--gold);
+
+    font-size:9px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+}
+
+.section-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(58px,8vw,105px);
+
+    font-weight:300;
+    line-height:.84;
+    letter-spacing:-2px;
+}
+
+.section-description{
+    max-width:560px;
+
+    margin-top:36px;
+
+    color:var(--muted);
+
+    font-family:"Noto Serif Georgian",serif;
+
+    font-size:13px;
+    line-height:2.1;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    text-align:center;
+    overflow:hidden;
+}
+
+.intro .section-description{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.big-monogram{
+    margin-top:100px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(110px,21vw,270px);
+
+    font-weight:300;
+    line-height:.6;
+
+    color:transparent;
+
+    -webkit-text-stroke:1px var(--gold);
+
+    opacity:.45;
+
+    animation:
+        monogramFloat 5s ease-in-out infinite;
+}
+
+@keyframes monogramFloat{
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:100px;
+
+    align-items:start;
+}
+
+.story-image{
+    height:700px;
+    overflow:hidden;
+}
+
+.story-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:
+        transform 1.5s cubic-bezier(.22,1,.36,1);
+}
+
+.story-image:hover img{
+    transform:scale(1.06);
+}
+
+.timeline{
+    margin-top:65px;
+    border-left:1px solid var(--line);
+}
+
+.timeline-item{
+    position:relative;
+
+    padding:
+        0
+        0
+        75px
+        45px;
+}
+
+.timeline-item:last-child{
+    padding-bottom:0;
+}
+
+.timeline-item::before{
+    content:"";
+
+    position:absolute;
+
+    left:-4px;
+    top:4px;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--gold);
+
+    box-shadow:
+        0 0 0 5px var(--bg),
+        0 0 20px var(--gold);
+}
+
+.timeline-year{
+    margin-bottom:14px;
+
+    color:var(--gold);
+
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+.timeline-title{
+    margin-bottom:14px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:36px;
+    font-weight:400;
+}
+
+.timeline-text{
+    color:var(--muted);
+
+    font-family:"Noto Serif Georgian",serif;
+
+    font-size:12px;
+    line-height:1.9;
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.details{
+    background:var(--surface);
+    transition:background 1s ease;
+}
+
+.details-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+
+    gap:50px;
+
+    margin-bottom:85px;
+}
+
+.date-display{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(80px,12vw,150px);
+
+    font-weight:300;
+    line-height:.7;
+}
+
+.date-display small{
+    display:block;
+
+    margin-top:25px;
+
+    font-family:"Manrope",sans-serif;
+
+    font-size:9px;
+    letter-spacing:5px;
+
+    color:var(--gold);
+}
+
+.detail-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.detail-card{
+    min-height:270px;
+
+    padding:50px 35px;
+
+    border-right:1px solid var(--line);
+
+    transition:.4s;
+}
+
+.detail-card:hover{
+    background:rgba(255,255,255,.04);
+    transform:translateY(-5px);
+}
+
+.detail-card:last-child{
+    border-right:0;
+}
+
+.detail-number{
+    margin-bottom:30px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:43px;
+
+    color:var(--gold);
+}
+
+.detail-card h3{
+    margin-bottom:12px;
+
+    font-family:"Noto Serif Georgian",serif;
+
+    font-size:15px;
+    font-weight:500;
+}
+
+.detail-card p{
+    color:var(--muted);
+
+    font-size:12px;
+    line-height:1.9;
+}
+
+.map-btn{
+    display:inline-flex;
+
+    margin-top:30px;
+
+    color:var(--text);
+
+    text-decoration:none;
+
+    padding-bottom:8px;
+
+    border-bottom:1px solid var(--gold);
+
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown{
+    min-height:600px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+
+    overflow:hidden;
+}
+
+.countdown-bg{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(5,6,9,.42),
+            rgba(5,5,7,.82)
+        ),
+        url("https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=2400&q=90");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.countdown-content{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+}
+
+.countdown-title{
+    font-family:"Noto Serif Georgian",serif;
+    font-size:14px;
+}
+
+.timer{
+    max-width:900px;
+
+    margin:65px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+
+.timer-item{
+    border-right:1px solid rgba(255,255,255,.18);
+}
+
+.timer-item:last-child{
+    border-right:0;
+}
+
+.timer-number{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(65px,9vw,110px);
+
+    font-weight:300;
+    line-height:.8;
+}
+
+.timer-label{
+    margin-top:26px;
+
+    font-size:8px;
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    opacity:.65;
+}
+
+
+/* =========================
+   RSVP
+========================= */
+
+.rsvp{
+    background:var(--surface);
+}
+
+.rsvp-layout{
+    display:grid;
+
+    grid-template-columns:.8fr 1.2fr;
+
+    gap:100px;
+}
+
+.rsvp-form{
+    display:flex;
+    flex-direction:column;
+
+    gap:27px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.field label{
+    color:var(--muted);
+
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.field input,
+.field textarea{
+    padding:15px 0;
+
+    border:0;
+    border-bottom:1px solid var(--line);
+
+    outline:none;
+
+    background:transparent;
+
+    color:var(--text);
+}
+
+.field input:focus,
+.field textarea:focus{
+    border-color:var(--gold);
+}
+
+.attendance{
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+
+.attendance label{
+    padding:14px 18px;
+
+    border:1px solid var(--line);
+
+    cursor:pointer;
+
+    font-family:"Noto Serif Georgian",serif;
+
+    font-size:10px;
+
+    transition:.3s;
+}
+
+.attendance input{
+    display:none;
+}
+
+.attendance label:has(input:checked){
+    border-color:var(--gold);
+    background:rgba(180,140,75,.08);
+}
+
+.guest-counter{
+    display:flex;
+    align-items:center;
+
+    gap:20px;
+}
+
+.counter-btn{
+    width:42px;
+    height:42px;
+
+    border:1px solid var(--line);
+    border-radius:50%;
+
+    background:transparent;
+    color:var(--text);
+}
+
+.guest-count{
+    min-width:30px;
+
+    text-align:center;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:32px;
+}
+
+.submit-btn{
+    width:100%;
+
+    margin-top:10px;
+
+    padding:20px;
+
+    border:1px solid var(--gold);
+
+    background:var(--gold);
+
+    color:white;
+
+    font-size:9px;
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    transition:.4s;
+}
+
+.submit-btn:hover{
+    background:transparent;
+    color:var(--text);
+}
+
+.success{
+    display:none;
+
+    padding:70px 30px;
+
+    border:1px solid var(--line);
+
+    text-align:center;
+}
+
+.success.show{
+    display:block;
+}
+
+.success h3{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:55px;
+
+    font-weight:300;
+}
+
+.success p{
+    margin-top:20px;
+
+    color:var(--muted);
+
+    font-family:"Noto Serif Georgian",serif;
+
+    line-height:2;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    padding:140px 0 40px;
+
+    text-align:center;
+}
+
+.footer-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(80px,15vw,190px);
+
+    font-weight:300;
+
+    line-height:.7;
+
+    letter-spacing:-4px;
+}
+
+.footer-text{
+    margin-top:55px;
+
+    color:var(--muted);
+
+    font-family:"Noto Serif Georgian",serif;
+
+    font-size:13px;
+
+    line-height:2;
+}
+
+.footer-bottom{
+    margin-top:100px;
+
+    padding-top:25px;
+
+    border-top:1px solid var(--line);
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    letter-spacing:4px;
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-btn{
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    width:55px;
+    height:55px;
+
+    border:0;
+    border-radius:50%;
+
+    background:var(--text);
+    color:var(--bg);
+
+    z-index:900;
+
+    display:grid;
+    place-items:center;
+
+    box-shadow:var(--shadow);
+}
+
+.music-ring{
+    position:absolute;
+
+    inset:-5px;
+
+    border:1px solid var(--gold);
+
+    border-radius:50%;
+
+    opacity:0;
+}
+
+.music-btn.playing .music-ring{
+    opacity:1;
+
+    animation:
+        spin 3s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(45px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:none;
+}
+
+
+/* =========================
+   PETALS
+========================= */
+
+.petal{
+    position:fixed;
+
+    top:-30px;
+
+    width:7px;
+    height:11px;
+
+    border-radius:100% 0 100% 0;
+
+    background:rgba(207,168,105,.45);
+
+    pointer-events:none;
+
+    z-index:2;
+
+    animation:
+        fall linear forwards;
+}
+
+@keyframes fall{
+    0%{
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+    }
+
+    100%{
+        transform:
+            translateY(110vh)
+            translateX(100px)
+            rotate(500deg);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .nav{
+        top:12px;
+
+        width:calc(100% - 24px);
+        height:60px;
+
+        padding:0 16px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .nav-links{
+        position:absolute;
+
+        top:70px;
+        left:0;
+
+        width:100%;
+
+        padding:30px;
+
+        border-radius:25px;
+
+        background:rgba(18,17,15,.96);
+
+        backdrop-filter:blur(25px);
+
+        flex-direction:column;
+
+        align-items:center;
+
+        opacity:0;
+        visibility:hidden;
+
+        transform:translateY(-10px);
+
+        transition:.35s;
+    }
+
+    .nav-links.open{
+        opacity:1;
+        visibility:visible;
+        transform:none;
+    }
+
+    .menu-btn{
+        display:grid;
+    }
+
+    .hero{
+        min-height:680px;
+    }
+
+    .hero-title{
+        font-size:78px;
+        letter-spacing:-3px;
+    }
+
+    .eyebrow{
+        letter-spacing:4px;
+    }
+
+    .hero-date{
+        letter-spacing:2px;
+    }
+
+    .moon{
+        width:65px;
+        height:65px;
+
+        right:35px;
+        top:100px;
+    }
+
+    .moon::after{
+        width:65px;
+        height:65px;
+
+        left:20px;
+    }
+
+    .section{
+        padding:100px 0;
+    }
+
+    .container{
+        width:calc(100% - 32px);
+    }
+
+    .story-grid{
+        grid-template-columns:1fr;
+
+        gap:70px;
+    }
+
+    .story-image{
+        height:500px;
+    }
+
+    .details-head{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .detail-cards{
+        grid-template-columns:1fr;
+    }
+
+    .detail-card{
+        border-right:0;
+
+        border-bottom:1px solid var(--line);
+    }
+
+    .detail-card:last-child{
+        border-bottom:0;
+    }
+
+    .timer{
+        grid-template-columns:1fr 1fr;
+
+        gap:50px 0;
+    }
+
+    .timer-item:nth-child(2){
+        border-right:0;
+    }
+
+    .rsvp-layout{
+        grid-template-columns:1fr;
+
+        gap:60px;
+    }
+
+    .footer-title{
+        font-size:78px;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .loader-monogram{
+        font-size:72px;
+
+        letter-spacing:10px;
+    }
+
+    .hero-title{
+        font-size:65px;
+    }
+
+    .story-image{
+        height:420px;
+    }
+
+    .date-display{
+        font-size:82px;
+    }
+
+    .footer-title{
+        font-size:67px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="ambient"></div>
+<div class="sun"></div>
+<div class="moon"></div>
+
+<div class="stars" id="stars"></div>
+
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-monogram">
+        L & Q
+    </div>
+
+    <div class="loader-line"></div>
+
+    <div class="loader-text">
+        ჩვენი განსაკუთრებული დღე
+    </div>
+
+</div>
+
+
+<div class="cursor"></div>
+
+
+<!-- NAV -->
+
+<nav class="nav" id="nav">
+
+    <div class="logo">
+        L & Q
+    </div>
+
+    <div class="nav-links" id="navLinks">
+
+        <a href="#story">
+            ჩვენი ისტორია
+        </a>
+
+        <a href="#details">
+            ჩვენი დღე
+        </a>
+
+        <a href="#rsvp">
+            RSVP
+        </a>
+
+    </div>
+
+    <div class="nav-actions">
+
+        <button
+            class="theme-btn"
+            id="themeBtn"
+            aria-label="თემის შეცვლა"
+        >
+            ☾
+        </button>
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="მენიუ"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="hero-bg"></div>
+
+    <div class="hero-light-rays"></div>
+
+    <div class="night-lights">
+
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+        <span class="light"></span>
+
+    </div>
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            თქვენთვის განსაკუთრებული მოწვევა
+        </div>
+
+        <h1 class="hero-title">
+
+            <span>
+                ლუკა
+            </span>
+
+            <span class="amp">
+                &
+            </span>
+
+            <span>
+                ქეთი
+            </span>
+
+        </h1>
+
+        <div class="hero-date">
+            18 · 09 · 2027
+        </div>
+
+    </div>
+
+    <div class="scroll-indicator">
+
+        <span>
+            გააგრძელე
+        </span>
+
+        <div class="scroll-line"></div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- INTRO -->
+
+<section class="section intro">
+
+    <div class="container reveal">
+
+        <div class="section-label">
+            ჩვენი დღე
+        </div>
+
+        <h2 class="section-title">
+
+            ორი ადამიანი.
+            <br>
+
+            ერთი ისტორია.
+
+        </h2>
+
+        <p class="section-description">
+
+            სიყვარულით გეპატიჟებით,
+            რომ ჩვენთვის ყველაზე მნიშვნელოვან დღეს
+            ჩვენთან ერთად იყოთ.
+
+        </p>
+
+        <div class="big-monogram">
+            L & Q
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section class="section" id="story">
+
+    <div class="container">
+
+        <div class="story-grid">
+
+
+            <div class="story-image reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=90"
+                    alt="ლუკა და ქეთი"
+                >
+
+            </div>
+
+
+            <div>
+
+                <div class="section-label reveal">
+                    ჩვენი ისტორია
+                </div>
+
+                <h2 class="section-title reveal">
+
+                    ერთად
+                    <br>
+
+                    დაწყებული
+                    <br>
+
+                    გზა.
+
+                </h2>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-year">
+                            [ წელი ]
+                        </div>
+
+                        <div class="timeline-title">
+                            პირველი შეხვედრა
+                        </div>
+
+                        <div class="timeline-text">
+
+                            აქ შეგიძლიათ დაამატოთ
+                            თქვენი პირველი შეხვედრის ისტორია.
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-year">
+                            [ წელი ]
+                        </div>
+
+                        <div class="timeline-title">
+                            პირველი მოგზაურობა
+                        </div>
+
+                        <div class="timeline-text">
+
+                            კიდევ ერთი განსაკუთრებული
+                            მომენტი თქვენს ისტორიაში.
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-year">
+                            [ წელი ]
+                        </div>
+
+                        <div class="timeline-title">
+                            მნიშვნელოვანი დღე
+                        </div>
+
+                        <div class="timeline-text">
+
+                            ის დღე, რომელიც სამუდამოდ
+                            დარჩება თქვენს მოგონებებში.
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item reveal">
+
+                        <div class="timeline-year">
+                            2027
+                        </div>
+
+                        <div class="timeline-title">
+                            ჩვენი დიდი დღე
+                        </div>
+
+                        <div class="timeline-text">
+
+                            დღე, რომელსაც ერთად
+                            სამუდამოდ დავიმახსოვრებთ.
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DETAILS -->
+
+<section
+    class="section details"
+    id="details"
+>
+
+    <div class="container">
+
+
+        <div class="details-head">
+
+            <div>
+
+                <div class="section-label reveal">
+                    ქორწილის დეტალები
+                </div>
+
+                <h2 class="section-title reveal">
+                    ჩვენი დღე.
+                </h2>
+
+            </div>
+
+
+            <div class="date-display reveal">
+
+                18
+
+                <small>
+                    სექტემბერი 2027
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="detail-cards">
+
+
+            <div class="detail-card reveal">
+
+                <div class="detail-number">
+                    01
+                </div>
+
+                <h3>
+                    თარიღი
+                </h3>
+
+                <p>
+                    18 სექტემბერი 2027
+                </p>
+
+            </div>
+
+
+            <div class="detail-card reveal">
+
+                <div class="detail-number">
+                    02
+                </div>
+
+                <h3>
+                    დრო
+                </h3>
+
+                <p>
+                    17:00
+                </p>
+
+            </div>
+
+
+            <div class="detail-card reveal">
+
+                <div class="detail-number">
+                    03
+                </div>
+
+                <h3>
+                    ადგილი
+                </h3>
+
+                <p>
+
+                    [ ღონისძიების ადგილი ]
+                    <br>
+                    [ მისამართი ]
+
+                </p>
+
+                <a
+                    class="map-btn"
+                    href="https://maps.google.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    მდებარეობის ნახვა →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COUNTDOWN -->
+
+<section class="countdown">
+
+    <div class="countdown-bg"></div>
+
+    <div class="container countdown-content">
+
+        <div class="countdown-title">
+            ჩვენს განსაკუთრებულ დღემდე დარჩა
+        </div>
+
+        <div class="timer">
+
+
+            <div class="timer-item">
+
+                <div
+                    class="timer-number"
+                    id="days"
+                >
+                    00
+                </div>
+
+                <div class="timer-label">
+                    დღე
+                </div>
+
+            </div>
+
+
+            <div class="timer-item">
+
+                <div
+                    class="timer-number"
+                    id="hours"
+                >
+                    00
+                </div>
+
+                <div class="timer-label">
+                    საათი
+                </div>
+
+            </div>
+
+
+            <div class="timer-item">
+
+                <div
+                    class="timer-number"
+                    id="minutes"
+                >
+                    00
+                </div>
+
+                <div class="timer-label">
+                    წუთი
+                </div>
+
+            </div>
+
+
+            <div class="timer-item">
+
+                <div
+                    class="timer-number"
+                    id="seconds"
+                >
+                    00
+                </div>
+
+                <div class="timer-label">
+                    წამი
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RSVP -->
+
+<section
+    class="section rsvp"
+    id="rsvp"
+>
+
+    <div class="container">
+
+        <div class="rsvp-layout">
+
+
+            <div>
+
+                <div class="section-label reveal">
+                    RSVP
+                </div>
+
+                <h2 class="section-title reveal">
+
+                    იქნები
+                    <br>
+                    ჩვენთან?
+
+                </h2>
+
+                <p class="section-description reveal">
+
+                    შენი დასწრება ჩვენთვის
+                    ძალიან მნიშვნელოვანია.
+                    გთხოვთ, დაგვიდასტუროთ
+                    თქვენი დასწრება.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+
+                <form
+                    class="rsvp-form"
+                    id="rsvpForm"
+                >
+
+
+                    <div class="field">
+
+                        <label for="name">
+                            სახელი და გვარი
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text"
+                            required
+                            placeholder="მაგ. ნინო ბერიძე"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            დასწრება
+                        </label>
+
+
+                        <div class="attendance">
+
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="attendance"
+                                    value="yes"
+                                    required
+                                >
+
+                                სიამოვნებით მოვალ
+
+                            </label>
+
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="attendance"
+                                    value="no"
+                                >
+
+                                ვერ მოვალ
+
+                            </label>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            სტუმრების რაოდენობა
+                        </label>
+
+
+                        <div class="guest-counter">
+
+                            <button
+                                type="button"
+                                class="counter-btn"
+                                id="minus"
+                            >
+                                −
+                            </button>
+
+
+                            <div
+                                class="guest-count"
+                                id="guestCount"
+                            >
+                                1
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="counter-btn"
+                                id="plus"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="comment">
+                            დამატებითი კომენტარი
+                        </label>
+
+                        <textarea
+                            id="comment"
+                            rows="4"
+                            placeholder="თუ რაიმეს გვსურს გაგვიზიაროთ..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        class="submit-btn"
+                        type="submit"
+                    >
+                        დასწრების დადასტურება
+                    </button>
+
+
+                </form>
+
+
+                <div
+                    class="success"
+                    id="success"
+                >
+
+                    <h3>
+                        მადლობა 🤍
+                    </h3>
+
+                    <p>
+
+                        შენი პასუხი მიღებულია.
+                        <br>
+                        მოუთმენლად გელოდებით.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-title">
+            L & Q
+        </div>
+
+        <p class="footer-text">
+
+            მადლობა, რომ ჩვენი
+            განსაკუთრებული დღის
+            ნაწილი ხდები.
+
+            <br>
+
+            სიყვარულით 🤍
+
+        </p>
+
+        <div class="footer-bottom">
+            © 2027 LUKA & KETI
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- MUSIC -->
+
+<button
+    class="music-btn"
+    id="musicBtn"
+    aria-label="მუსიკის ჩართვა"
+>
+
+    <span class="music-ring"></span>
+
+    ♫
+
+</button>
+
+
+<audio
+    id="music"
+    loop
+    src="https://cdn.pixabay.com/audio/2022/10/25/audio_946f7e9f7c.mp3"
+></audio>
+
+
+<script>
+
+
+/* =========================
+   LOADER
+========================= */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+            .getElementById("loader")
+            .classList.add("hide");
+
+    },2300);
+
+});
+
+
+/* =========================
+   STARS
+========================= */
+
+const stars =
+    document.getElementById("stars");
+
+for(let i=0;i<130;i++){
+
+    const star =
+        document.createElement("div");
+
+    star.className="star";
+
+    star.style.left =
+        Math.random()*100+"%";
+
+    star.style.top =
+        Math.random()*100+"%";
+
+    star.style.animationDelay =
+        Math.random()*3+"s";
+
+    star.style.animationDuration =
+        (1.5+Math.random()*3)+"s";
+
+    stars.appendChild(star);
+}
+
+
+/* =========================
+   CURSOR
+========================= */
+
+const cursor =
+    document.querySelector(".cursor");
+
+document.addEventListener(
+    "mousemove",
+    e=>{
+
+        cursor.style.left =
+            e.clientX+"px";
+
+        cursor.style.top =
+            e.clientY+"px";
+
+    }
+);
+
+
+document
+    .querySelectorAll("a,button")
+    .forEach(el=>{
+
+        el.addEventListener(
+            "mouseenter",
+            ()=>{
+                cursor.classList.add("active");
+            }
+        );
+
+        el.addEventListener(
+            "mouseleave",
+            ()=>{
+                cursor.classList.remove("active");
+            }
+        );
+
+    });
+
+
+/* =========================
+   NAV
+========================= */
+
+const nav =
+    document.getElementById("nav");
+
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+        nav.classList.toggle(
+            "scrolled",
+            window.scrollY>50
+        );
+
+    }
+);
+
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuBtn.addEventListener(
+    "click",
+    ()=>{
+
+        navLinks.classList.toggle("open");
+
+    }
+);
+
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(link=>{
+
+        link.addEventListener(
+            "click",
+            ()=>{
+
+                navLinks.classList.remove("open");
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   DARK / LIGHT
+========================= */
+
+const themeBtn =
+    document.getElementById("themeBtn");
+
+
+function updateThemeIcon(){
+
+    const dark =
+        document.body.classList.contains("dark");
+
+    themeBtn.textContent =
+        dark ? "☀" : "☾";
+
+}
+
+
+if(
+    localStorage.getItem("wedding-theme")
+    ===
+    "dark"
+){
+
+    document.body.classList.add("dark");
+
+}
+
+
+updateThemeIcon();
+
+
+themeBtn.addEventListener(
+    "click",
+    ()=>{
+
+        document.body.classList.toggle("dark");
+
+        localStorage.setItem(
+            "wedding-theme",
+            document.body.classList.contains("dark")
+                ? "dark"
+                : "light"
+        );
+
+        updateThemeIcon();
+
+    }
+);
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+const weddingDate =
+    new Date(
+        "2027-09-18T17:00:00"
+    ).getTime();
+
+
+function updateCountdown(){
+
+    const distance =
+        weddingDate-Date.now();
+
+
+    if(distance<=0){
+
+        [
+            "days",
+            "hours",
+            "minutes",
+            "seconds"
+        ].forEach(id=>{
+
+            document
+                .getElementById(id)
+                .textContent="00";
+
+        });
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            distance /
+            (1000*60*60*24)
+        );
+
+
+    const hours =
+        Math.floor(
+            distance /
+            (1000*60*60) %
+            24
+        );
+
+
+    const minutes =
+        Math.floor(
+            distance /
+            (1000*60) %
+            60
+        );
+
+
+    const seconds =
+        Math.floor(
+            distance /
+            1000 %
+            60
+        );
+
+
+    document
+        .getElementById("days")
+        .textContent =
+        String(days).padStart(2,"0");
+
+
+    document
+        .getElementById("hours")
+        .textContent =
+        String(hours).padStart(2,"0");
+
+
+    document
+        .getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2,"0");
+
+
+    document
+        .getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2,"0");
+
+}
+
+
+updateCountdown();
+
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =========================
+   REVEAL
+========================= */
+
+const revealObserver =
+    new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.12
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(el=>{
+
+        revealObserver.observe(el);
+
+    });
+
+
+/* =========================
+   RSVP
+========================= */
+
+let guestCount=1;
+
+
+const guestDisplay =
+    document.getElementById("guestCount");
+
+
+document
+    .getElementById("plus")
+    .addEventListener(
+        "click",
+        ()=>{
+
+            if(guestCount<10){
+
+                guestCount++;
+
+                guestDisplay.textContent =
+                    guestCount;
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("minus")
+    .addEventListener(
+        "click",
+        ()=>{
+
+            if(guestCount>1){
+
+                guestCount--;
+
+                guestDisplay.textContent =
+                    guestCount;
+
+            }
+
+        }
+    );
+
+
+const rsvpForm =
+    document.getElementById("rsvpForm");
+
+
+const success =
+    document.getElementById("success");
+
+
+rsvpForm.addEventListener(
+    "submit",
+    e=>{
+
+        e.preventDefault();
+
+
+        const name =
+            document
+                .getElementById("name")
+                .value
+                .trim();
+
+
+        const attendance =
+            document.querySelector(
+                'input[name="attendance"]:checked'
+            );
+
+
+        if(!name || !attendance){
+
+            return;
+
+        }
+
+
+        const data = {
+
+            name:name,
+
+            attendance:
+                attendance.value,
+
+            guests:
+                guestCount,
+
+            comment:
+                document
+                    .getElementById("comment")
+                    .value
+                    .trim(),
+
+            time:
+                new Date().toISOString()
+
+        };
+
+
+        localStorage.setItem(
+            "LQ-RSVP",
+            JSON.stringify(data)
+        );
+
+
+        rsvpForm.style.display =
+            "none";
+
+
+        success.classList.add(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const music =
+    document.getElementById("music");
+
+
+const musicBtn =
+    document.getElementById("musicBtn");
+
+
+let playing=false;
+
+
+musicBtn.addEventListener(
+    "click",
+    async()=>{
+
+        try{
+
+            if(!playing){
+
+                await music.play();
+
+                playing=true;
+
+                musicBtn.classList.add(
+                    "playing"
+                );
+
+            }else{
+
+                music.pause();
+
+                playing=false;
+
+                musicBtn.classList.remove(
+                    "playing"
+                );
+
+            }
+
+        }catch(error){
+
+            console.log(
+                "Music could not be played."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   PETALS
+========================= */
+
+function createPetal(){
+
+    const petal =
+        document.createElement("div");
+
+    petal.className="petal";
+
+    petal.style.left =
+        Math.random()*100+"vw";
+
+    petal.style.opacity =
+        .25+Math.random()*.45;
+
+    petal.style.animationDuration =
+        7+Math.random()*8+"s";
+
+    document.body.appendChild(
+        petal
+    );
+
+
+    setTimeout(
+        ()=>{
+            petal.remove();
+        },
+        16000
+    );
+
+}
+
+
+setInterval(
+    createPetal,
+    1800
+);
+
+
+/* =========================
+   HERO PARALLAX
+========================= */
+
+const heroBg =
+    document.querySelector(".hero-bg");
+
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+        if(
+            window.scrollY <
+            window.innerHeight
+        ){
+
+            heroBg.style.transform =
+                `scale(1.04)
+                 translateY(${window.scrollY*.08}px)`;
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
